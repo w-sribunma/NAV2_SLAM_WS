@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<robot name="x500_lidar" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="black">
+    <color rgba="0.01 0.01 0.01 1"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+ 
+  <link name="base_link">
+    <origin xyz="0.0 0 0.0" rpy="0 0 0"/>
+    <visual>
+      <origin xyz="0 0 0.025" rpy="0 0 3.141592654"/>
+      <geometry>
+        <mesh filename="file:///home/wsribunm/Documents/GitHub/nav2_slam_ws/src/x500_description/meshes/NXP-HGD-CF.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.174 0.174 0.032" rpy="0 0 -0.45"/>
+      <geometry>
+        <mesh filename="file:///home/wsribunm/Documents/GitHub/nav2_slam_ws/src/x500_description/meshes/5010Base.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-0.174 0.174 0.032" rpy="0 0 -0.45"/>
+      <geometry>
+        <mesh filename="file:////home/wsribunm/Documents/GitHub/nav2_slam_ws/src/x500_description/meshes/5010Base.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.174 -0.174 0.032" rpy="0 0 -0.45"/>
+      <geometry>
+        <mesh filename="file:////home/wsribunm/Documents/GitHub/nav2_slam_ws/src/x500_description/meshes/5010Base.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-0.174 -0.174 0.032" rpy="0 0 -0.45"/>
+      <geometry>
+        <mesh filename="file:///home/wsribunm/Documents/GitHub/nav2_slam_ws/src/x500_description/meshes/5010Base.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="base_footprint"/>
+
+  <link name="lidar_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.039 0.039 0.022"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.014" radius="0.018"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="lidar_joint" type="fixed">
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+  </joint>
+
+</robot>
